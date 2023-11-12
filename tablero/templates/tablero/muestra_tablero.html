@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Muestra de Tablero</title>
+    <style>
+        .tablero {
+            border-collapse: collapse;
+        }
+
+        .casilla {
+            width: {{ tamano_casilla }}px;
+            height: {{ tamano_casilla }}px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h2>Tablero de Ajedrez</h2>
+
+    <!-- Tablero de Ajedrez -->
+    <table class="tablero">
+        {% for i in filas_range %}
+            <tr>
+                {% for j in columnas_range %}
+                    <td class="casilla"></td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+
