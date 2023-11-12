@@ -12,17 +12,34 @@
             height: {{ tamano_casilla }}px;
             border: 1px solid black;
         }
+
+        .casilla-amarilla {
+            background-color: #fafa27; /* Blanco */
+        }
+
+        .casilla-negra {
+            background-color: #000; /* Negro */
+            color: #fff; /* Texto blanco en celdas negras */
+        }
     </style>
 </head>
 <body>
+    {% load static %}  <!-- Agrega esta línea para cargar la etiqueta static -->
+
     <h2>Tablero de Ajedrez</h2>
 
     <!-- Tablero de Ajedrez -->
-    <table class="tablero">
-        {% for i in filas_range %}
+    <table style="border: 2px solid black;">
+        {% for fila in tablero %}
             <tr>
-                {% for j in columnas_range %}
-                    <td class="casilla"></td>
+                {% for casilla in fila %}
+                    <td class="casilla
+                        {% if casilla.color == 'amarillo' %} casilla-amarilla{% endif %} #Verificamos que si la casilla es amarilla, ponemos el color amarillo
+                        {% if casilla.color == 'negro' %} casilla-negra{% endif %}">
+                        {% if casilla.valor %} <!--aqui estamos llamando a la propiedad VALOR que tengo en ajedrez.py, por lo tanto, saldrán las figuras o saldrá vacio-->
+                            <img src="{% static '/tablero'|add:casilla.valor %}" alt="{{ casilla.valor }}">
+                        {% endif %}
+                    </td>
                 {% endfor %}
             </tr>
         {% endfor %}
